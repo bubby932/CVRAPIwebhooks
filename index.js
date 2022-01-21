@@ -8,7 +8,7 @@ const PORT = 3001;
 app.use(bodyParser.json());
 
 app.post("/github", (req, res) => {
-     console.log(req.body);
+     console.log(req.headers);
      res.status(200).send();
 
      if(typeof req.body.ref !== 'string') return res.status(200).send();
