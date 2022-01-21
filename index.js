@@ -13,7 +13,7 @@ app.post("/github", (req, res) => {
      console.log(req.headers);
      
      if(typeof req.body.ref !== 'string') return res.status(200).send();
-     else if (req.body.ref !== "refs/heads/production") return res.status(200).send();
+     else if (req.body.ref !== "refs/heads/main") return res.status(200).send();
      
      var hmac = crypto.createHmac('sha256', process.env.GITHUB_SECRET);
      
