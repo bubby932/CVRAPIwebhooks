@@ -22,7 +22,7 @@ app.post("/github", (req, res) => {
 
      var gen_hmac = data.digest('hex');
 
-     if(gen_hmac !== req.headers["X-Hub-Signature-256"]) return res.status(403).send("Invalid secret key!");
+     if(gen_hmac !== req.headers["x-hub-signature-256"]) return res.status(403).send("Invalid secret key!");
 
      exec("cd ../VigorXRAPI; git pull", (error, stdout, stderr) => {
      if (error) {
