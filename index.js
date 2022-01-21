@@ -11,4 +11,8 @@ app.post("/github", (req, res) => {
      res.status(200).send();
 });
 
+app.get("/health", (req, res) => {
+     res.status(200).send();
+});
+
 app.listen(PORT, '0.0.0.0', () => console.log("Alive on 3001."));
