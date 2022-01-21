@@ -9,9 +9,7 @@ const PORT = 3001;
 
 app.use(bodyParser.json());
 
-app.post("/github", (req, res) => {
-     console.log(req.headers);
-     
+app.post("/github", (req, res) => {     
      if(typeof req.body.ref !== 'string') return res.status(200).send();
      else if (req.body.ref !== "refs/heads/main") return res.status(200).send();
      
@@ -21,7 +19,11 @@ app.post("/github", (req, res) => {
      
      var gen_hmac = data.digest('hex');
      
-     if("sha256=" + gen_hmac !== req.headers["x-hub-signature-256"]) return res.status(403).send("Invalid secret key!");
+     if("sha256=" + gen_hmac !== req.headers["x-hub-signature-256"]) 
+     {
+          console.log("sha256="+gen_hmac);
+          return res.status(403).send("Invalid secret key!");
+     }
      
      exec("cd ../VigorXRAPI; git pull", (error, stdout, stderr) => {
           if (error) {
