@@ -17,7 +17,7 @@ app.post("/github", (req, res) => {
      
      var hmac = crypto.createHmac('sha256', process.env.GITHUB_SECRET);
      
-     var data = hmac.update(req.body.toString());
+     var data = hmac.update(JSON.stringify(req.body, null, 3));
      
      var gen_hmac = data.digest('hex');
      
