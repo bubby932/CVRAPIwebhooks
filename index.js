@@ -13,7 +13,7 @@ app.post("/github", (req, res) => {
      if(typeof req.body.ref !== 'string') return res.status(200).send();
      else if (req.body.ref !== "refs/heads/production") return res.status(200).send();
      
-     exec("cd ../VigorXRAPI; git pull", (error, stdout, stderr) => {
+     exec("cd ../VigorXRAPI; git pull; forever restartall", (error, stdout, stderr) => {
           if (error) {
                console.log(`error: ${error.message}`);
                return;
